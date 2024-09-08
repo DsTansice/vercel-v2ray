@@ -48,17 +48,7 @@
             },
             "streamSettings": {
                 "network": "ws",
-                "security": "tls",
-                "serverName": "serv00cdn.010085.xyz",
-                "tlsSettings": {
-                    "alpn": "http/1.1",
-                    "certificates": [
-                        {
-                            "certificateFile": "/home/tans0008/domains/xray/ssl/cert-cdn42.crt",
-                            "keyFile": "/home/tans0008/domains/xray/ssl/cert-cdn42.key"
-                        }
-                    ]
-                }
+                "security": "none",
             }
         }
     ],
