@@ -1,0 +1,75 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "dns": {
+        "servers": [
+            "https+local://1.1.1.1/dns-query",
+            "localhost"
+        ]
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "block"
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn"
+                ],
+                "outboundTag": "block"
+            },
+            {
+                "type": "field",
+                "domain": [
+                    "geosite:category-ads-all"
+                ],
+                "outboundTag": "block"
+            }
+        ]
+    },
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 8991,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "64bf3f93-e593-4dfb-935c-dbcc2be8d4b6"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "serverName": "serv00cdn.010085.xyz",
+                "tlsSettings": {
+                    "alpn": "http/1.1",
+                    "certificates": [
+                        {
+                            "certificateFile": "/home/tans0008/domains/xray/ssl/cert-cdn42.crt",
+                            "keyFile": "/home/tans0008/domains/xray/ssl/cert-cdn42.key"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "tag": "direct",
+            "protocol": "freedom"
+        },
+        {
+            "tag": "block",
+            "protocol": "blackhole"
+        }
+    ]
+}
